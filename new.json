@@ -1,0 +1,268 @@
+Server {
+    _events: [Object: null prototype
+    ] {},
+    _eventsCount: 0,
+    _maxListeners: undefined,
+    _nsps: Map(1) {
+      '/' => Namespace {
+        _events: [Object: null prototype
+            ],
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        sockets: [Map
+            ],
+        _fns: [],
+        _ids: 0,
+        server: [Circular *1
+            ],
+        name: '/',
+        adapter: [Adapter
+            ],
+            [Symbol(kCapture)
+            ]: false
+        }
+    },
+    parentNsps: Map(0) {},
+    parentNamespacesFromRegExp: Map(0) {},
+    _path: '/socket.io',
+    clientPathRegex: /^\/socket\.io\/socket\.io(\.msgpack|\.esm)?(\.min)?\.js(\.map)?(?:\?|$)/,
+    _connectTimeout: 45000,
+    _serveClient: true,
+    _parser: {
+      protocol: 5,
+      PacketType: {
+        '0': 'CONNECT',
+        '1': 'DISCONNECT',
+        '2': 'EVENT',
+        '3': 'ACK',
+        '4': 'CONNECT_ERROR',
+        '5': 'BINARY_EVENT',
+        '6': 'BINARY_ACK',
+        CONNECT: 0,
+        DISCONNECT: 1,
+        EVENT: 2,
+        ACK: 3,
+        CONNECT_ERROR: 4,
+        BINARY_EVENT: 5,
+        BINARY_ACK: 6
+        },
+      Encoder: [class Encoder
+        ],
+      Decoder: [class Decoder extends Emitter
+        ]
+    },
+    encoder: Encoder { replacer: undefined
+    },
+    opts: { cleanupEmptyChildNamespaces: false
+    },
+    _adapter: [class Adapter extends EventEmitter
+    ],
+    sockets: <ref *2> Namespace {
+      _events: [Object: null prototype
+        ] { connection: [Function (anonymous)
+            ]
+        },
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      sockets: Map(1) { 'tiqjvVfU_hO0MhTVAAAD' => [Socket
+            ]
+        },
+      _fns: [],
+      _ids: 0,
+      server: [Circular *1
+        ],
+      name: '/',
+      adapter: Adapter {
+        _events: [Object: null prototype
+            ] {},
+        _eventsCount: 0,
+        _maxListeners: undefined,
+        nsp: [Circular *2
+            ],
+        rooms: [Map
+            ],
+        sids: [Map
+            ],
+        encoder: [Encoder
+            ],
+            [Symbol(kCapture)
+            ]: false
+        },
+        [Symbol(kCapture)
+        ]: false
+    },
+    eio: Server {
+      _events: [Object: null prototype
+        ] {
+        connection: [Function: bound onconnection
+            ]
+        },
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: { _PKf08pt7I2zBGmJAAAC: [Socket
+            ]
+        },
+      clientsCount: 1,
+      opts: {
+        wsEngine: [class WebSocketServer extends EventEmitter
+            ],
+        pingTimeout: 20000,
+        pingInterval: 25000,
+        upgradeTimeout: 10000,
+        maxHttpBufferSize: 1000000,
+        transports: [Array
+            ],
+        allowUpgrades: true,
+        httpCompression: [Object
+            ],
+        cors: false,
+        allowEIO3: false,
+        cleanupEmptyChildNamespaces: false,
+        path: '/socket.io'
+        },
+      ws: WebSocketServer {
+        _events: [Object: null prototype
+            ],
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        options: [Object
+            ],
+        _state: 0,
+            [Symbol(kCapture)
+            ]: false
+        },
+        [Symbol(kCapture)
+        ]: false
+    },
+    httpServer: <ref *3> Server {
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      requestTimeout: 300000,
+      headersTimeout: 60000,
+      keepAliveTimeout: 5000,
+      connectionsCheckingInterval: 30000,
+      joinDuplicateHeaders: undefined,
+      rejectNonStandardBodyWrites: false,
+      _events: [Object: null prototype
+        ] {
+        connection: [Function: connectionListener
+            ],
+        listening: [Function: bound init
+            ],
+        close: [Function: bound close
+            ],
+        upgrade: [Function (anonymous)
+            ],
+        request: [Function (anonymous)
+            ]
+        },
+      _eventsCount: 5,
+      _maxListeners: undefined,
+      _connections: 3,
+      _handle: TCP {
+        reading: false,
+        onconnection: [Function: onconnection
+            ],
+            [Symbol(owner_symbol)
+            ]: [Circular *3
+            ]
+        },
+      _usingWorkers: false,
+      _workers: [],
+      _unref: false,
+      allowHalfOpen: true,
+      pauseOnConnect: false,
+      noDelay: true,
+      keepAlive: false,
+      keepAliveInitialDelay: 0,
+      highWaterMark: 16384,
+      httpAllowHalfOpen: false,
+      timeout: 0,
+      maxHeadersCount: null,
+      maxRequestsPerSocket: 0,
+      _connectionKey: '6: : : : 3000',
+        [Symbol(IncomingMessage)
+        ]: [Function: IncomingMessage
+        ],
+        [Symbol(ServerResponse)
+        ]: [Function: ServerResponse
+        ],
+        [Symbol(kCapture)
+        ]: false,
+        [Symbol(async_id_symbol)
+        ]: 9,
+        [Symbol(http.server.connections)
+        ]: ConnectionsList {},
+        [Symbol(http.server.connectionsCheckingInterval)
+        ]: Timeout {
+        _idleTimeout: 30000,
+        _idlePrev: [TimersList
+            ],
+        _idleNext: [TimersList
+            ],
+        _idleStart: 149,
+        _onTimeout: [Function: bound checkConnections
+            ],
+        _timerArgs: undefined,
+        _repeat: 30000,
+        _destroyed: false,
+            [Symbol(refed)
+            ]: false,
+            [Symbol(kHasPrimitive)
+            ]: false,
+            [Symbol(asyncId)
+            ]: 8,
+            [Symbol(triggerId)
+            ]: 1
+        },
+        [Symbol(kUniqueHeaders)
+        ]: null
+    },
+    engine: Server {
+      _events: [Object: null prototype
+        ] {
+        connection: [Function: bound onconnection
+            ]
+        },
+      _eventsCount: 1,
+      _maxListeners: undefined,
+      middlewares: [],
+      clients: { _PKf08pt7I2zBGmJAAAC: [Socket
+            ]
+        },
+      clientsCount: 1,
+      opts: {
+        wsEngine: [class WebSocketServer extends EventEmitter
+            ],
+        pingTimeout: 20000,
+        pingInterval: 25000,
+        upgradeTimeout: 10000,
+        maxHttpBufferSize: 1000000,
+        transports: [Array
+            ],
+        allowUpgrades: true,
+        httpCompression: [Object
+            ],
+        cors: false,
+        allowEIO3: false,
+        cleanupEmptyChildNamespaces: false,
+        path: '/socket.io'
+        },
+      ws: WebSocketServer {
+        _events: [Object: null prototype
+            ],
+        _eventsCount: 1,
+        _maxListeners: undefined,
+        options: [Object
+            ],
+        _state: 0,
+            [Symbol(kCapture)
+            ]: false
+        },
+        [Symbol(kCapture)
+        ]: false
+    },
+    [Symbol(kCapture)
+    ]: false
+}
