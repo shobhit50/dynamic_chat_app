@@ -15,44 +15,115 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#"> <i class="fa-brands fa-whatsapp"></i> i-Chat</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+    <style>
+        .continer {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            background: linear-gradient(to right, #5f7e93, #2ecc71, #e3d0d0);
+            height: 100vh;
+        }
+
+        .continer-box {
+            flex-direction: column;
+            display: flex;
+            min-width: 18rem;
+            padding: 1rem;
+            width: 50%;
+            border-radius: 1.2rem;
+            background-color: white;
+            height: 90%;
+            max-width: 23rem;
+            box-shadow: 0px 0px 10px 0px #000000;
+        }
+
+        .fa-whatsapp {
+            font-size: clamp(1.5rem, 2vw, 2rem);
+            color: #25d366;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e3e3e3;
+            margin-bottom: 1rem;
+        }
+
+        .chat-box {
+            height: 100%;
+            width: 100%;
+            /* background-color: #e3e3e3; */
+            overflow-y: scroll;
+        }
+
+        .input {
+            /* background-color: #dedada; */
+            padding: 0.5rem 0 0.5rem 0;
+        }
+
+        .massage {
+            font-size: smaller;
+            font-style: oblique;
+            width: fit-content;
+            max-width: 10rem;
+            padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+            border: 1px solid black;
+            /* border-radius: 10px 10px 10px 0px; */
+            background-color: #ebebeb;
+        }
+
+        .left {
+            float: left;
+            clear: both;
+            border-radius: 10px 10px 10px 0px;
+        }
+
+        .right {
+            float: right;
+            clear: both;
+            border-radius: 10px 10px 0px 10px;
+        }
+    </style>
+    <div class="continer">
+        <div class="continer-box">
+            <nav> <span><i class="fa-brands fa-whatsapp"></i> Chat</span>
+                <div class="links"><a href="#"> <img style=" height: min-content; width: min-content;"
+                            src="./assits/community-outline.png" alt="">
+                    </a></div>
+            </nav>
+            <div class="chat-box">
+                <div class="massage right">
+                    hello sir
+                </div>
+                <div class="massage left">
+                    hello shobhit Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, velit culpa,
+                    dolorem ut aperiam porro.
+                </div>
+                <div class="massage right">
+                    hello shobhit Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, velit culpa,
+                    dolorem ut aperiam porro.
+                </div>
+                <div class="massage left">
+                    hello shobhit Lorem ipsum....
+
+                </div>
+
             </div>
+            <div class="input">
+                <form style="display: flex;">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+
+            </div>
+
+
         </div>
-    </nav>
+    </div>
+
+
     <script src="/socket.io/socket.io.js"></script>
     <script src="./mein.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
