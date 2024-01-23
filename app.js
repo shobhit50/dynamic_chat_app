@@ -24,7 +24,6 @@ app.use("/", userRoutes);
 
 io.on('connection', (socket) => {
     socket.on('new-user', (name) => {
-        // console.log(name);
         socket.username = name;
         socket.broadcast.emit('user-connected', name);
     });
@@ -32,6 +31,13 @@ io.on('connection', (socket) => {
     socket.on('send-chat-message', (message) => {
         socket.broadcast.emit('chat-message', { message: message, name: socket.username });
     });
+
+    socket.on('disconnect', () => {
+        socket.broadcast.emit('user-disconnected', { name: socket.username });
+    });
+
+
+
     console.log(socket.id);
     console.log(io.eio.clientsCount);
 });

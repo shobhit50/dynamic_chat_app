@@ -33,6 +33,10 @@ socket.on('chat-message', (data) => {
     appendMessage(`${data.name}: ${data.message} `, 'left');
 });
 
+socket.on('user-disconnected', (data) => {
+    appendMessage(`${data.name}: left the chat `, 'left');
+});
+
 
 
 
