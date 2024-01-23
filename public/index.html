@@ -24,6 +24,13 @@
             height: 100vh;
         }
 
+        .links {
+            gap: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         .continer-box {
             flex-direction: column;
             display: flex;
@@ -54,8 +61,15 @@
         .chat-box {
             height: 100%;
             width: 100%;
-            /* background-color: #e3e3e3; */
             overflow-y: scroll;
+        }
+
+        .chat-box::-webkit-scrollbar {
+            width: 0.5em;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background-color: transparent;
         }
 
         .input {
@@ -64,6 +78,7 @@
         }
 
         .massage {
+            margin-bottom: 0.5rem;
             font-size: smaller;
             font-style: oblique;
             width: fit-content;
@@ -85,13 +100,52 @@
             clear: both;
             border-radius: 10px 10px 0px 10px;
         }
+
+
+        .dropdown-container {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -121px;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+
+        }
+
+        .dropdown-container a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown:hover .dropdown-container {
+            display: block;
+        }
     </style>
     <div class="continer">
         <div class="continer-box">
             <nav> <span><i class="fa-brands fa-whatsapp"></i> Chat</span>
-                <div class="links"><a href="#"> <img style=" height: min-content; width: min-content;"
+                <div class="links">
+                    <a href="#"> <img style=" height: min-content; width: min-content;"
                             src="./assits/community-outline.png" alt="">
-                    </a></div>
+                    </a>
+                    <a href="#"> <img style=" height: min-content; width: min-content;"
+                            src="./assits/new-chat-outline.png" alt="">
+                    </a>
+                    <div class="dropdown">
+                        <a href="#">
+                            <img style="height: min-content; width: min-content;" src="./assits/menu.png" alt="">
+                        </a>
+                        <div class="dropdown-container">
+                            <a href="#">Dropdown Item 1</a>
+                            <a href="#">Dropdown Item 2</a>
+
+                        </div>
+                    </div>
+                </div>
             </nav>
             <div class="chat-box">
                 <div class="massage right">
@@ -109,26 +163,31 @@
                     hello shobhit Lorem ipsum....
 
                 </div>
+                <div class="massage right">
+                    hello shobhit Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, velit culpa,
+                    dolorem ut aperiam porro.
+
+
+                </div>
+
 
             </div>
             <div class="input">
-                <form style="display: flex;">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form style="display: flex; gap: 0.5rem;">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Type a message" aria-label="Search">
+                    <button style="border: none;     background-color: white;" type="submit"><img
+                            src="./assits/send.png" alt=""></button>
                 </form>
 
             </div>
-
-
         </div>
-    </div>
 
 
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="./mein.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-        crossorigin="anonymous"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="./mein.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
 </body>
 
 </html>
