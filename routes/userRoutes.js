@@ -9,7 +9,9 @@ const path = require("path");
 
 router.get('/', (req, res) => {
     let user
-    res.render('index', { user });
+    // go to community route
+    res.redirect('/community');
+
 });
 router.get('/community', (req, res) => {
     const user = 'Community'

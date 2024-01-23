@@ -23,12 +23,17 @@ app.use("/", userRoutes);
 
 
 io.on('connection', (socket) => {
-    console.log(socket.server.engine.clientsCount)
-    // console.log(io);
+    socket.on('new-user', (name) => {
+        // console.log(name);
+        socket.username = name;
+        socket.broadcast.emit('user-connected', name);
+    });
 
-    // console.log(io.eio.clientsCount);
-
-
+    socket.on('send-chat-message', (message) => {
+        socket.broadcast.emit('chat-message', { message: message, name: socket.username });
+    });
+    console.log(socket.id);
+    console.log(io.eio.clientsCount);
 });
 
 
