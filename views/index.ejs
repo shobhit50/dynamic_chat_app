@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dymanic-Chat</title>
+    <link rel="icon" href="https://static.whatsapp.net/rsrc.php/v3/yz/r/ujTY9i_Jhs1.png" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <style>
+        .continer {
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            background: linear-gradient(to right, #5f7e93, #2ecc71, #e3d0d0);
+            height: 100vh;
+        }
+
+        .links {
+            gap: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .continer-box {
+            flex-direction: column;
+            display: flex;
+            min-width: 18rem;
+            padding: 1rem;
+            width: 50%;
+            border-radius: 1.2rem;
+            background-color: white;
+            height: 90%;
+            max-width: 23rem;
+            box-shadow: 0px 0px 10px 0px #000000;
+        }
+
+        .fa-whatsapp {
+            font-size: clamp(1.5rem, 2vw, 2rem);
+            color: #25d366;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e3e3e3;
+            margin-bottom: 1rem;
+        }
+
+        .chat-box {
+            height: 100%;
+            width: 100%;
+            overflow-y: scroll;
+        }
+
+        .chat-box::-webkit-scrollbar {
+            width: 0.5em;
+        }
+
+        .chat-box::-webkit-scrollbar-thumb {
+            background-color: transparent;
+        }
+
+        .input {
+            /* background-color: #dedada; */
+            padding: 0.5rem 0 0.5rem 0;
+        }
+
+        .massage {
+            margin-bottom: 0.5rem;
+            font-size: smaller;
+            font-style: oblique;
+            width: fit-content;
+            max-width: 10rem;
+            padding: 0.2rem 0.2rem 0.2rem 0.4rem;
+            border: 1px solid black;
+            /* border-radius: 10px 10px 10px 0px; */
+            background-color: #ebebeb;
+        }
+
+        .left {
+            float: left;
+            clear: both;
+            border-radius: 10px 10px 10px 0px;
+        }
+
+        .right {
+            float: right;
+            clear: both;
+            border-radius: 10px 10px 0px 10px;
+        }
+
+
+        .dropdown-container {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: -121px;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+
+        }
+
+        .dropdown-container a {
+            display: block;
+            padding: 8px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown:hover .dropdown-container {
+            display: block;
+        }
+    </style>
+    <div class="continer">
+        <div class="continer-box">
+            <nav> <span><i class="fa-brands fa-whatsapp"></i>
+                    <% if (user) { %>
+                        <%= user %>
+                            <% } else { %>
+                                chat-box
+                                <% } %>
+                </span>
+                <div class="links">
+                    <a href="/community"> <img style=" height: min-content; width: min-content;"
+                            src="/assits/community-outline.png" alt="">
+                    </a>
+                    <a href="new-chat"> <img style=" height: min-content; width: min-content;"
+                            src="/assits/new-chat-outline.png" alt="">
+                    </a>
+                    <div class="dropdown">
+                        <a href="#">
+                            <img style="height: min-content; width: min-content;" src="/assits/menu.png" alt="">
+                        </a>
+                        <div class="dropdown-container">
+                            <a href="./userLogin">Log in</a>
+                            <a href="#">Dropdown Item 2</a>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="chat-box">
+                <div class="massage right">
+                    hello sir
+                </div>
+                <div class="massage left">
+                    hello shobhit Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, velit culpa,
+                    dolorem ut aperiam porro.
+                </div>
+                <div class="massage right">
+                    hello shobhit Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, velit culpa,
+                    dolorem ut aperiam porro.
+                </div>
+                <div class="massage left">
+                    hello shobhit Lorem ipsum....
+
+                </div>
+                <div class="massage right">
+                    hello shobhit Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium, velit culpa,
+                    dolorem ut aperiam porro.
+
+
+                </div>
+
+
+            </div>
+            <div class="input">
+                <form style="display: flex; gap: 0.5rem;">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Type a message" aria-label="Search">
+                    <button style="border: none;     background-color: white;" type="submit"><img src="/assits/send.png"
+                            alt=""></button>
+                </form>
+
+            </div>
+        </div>
+
+
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="../public/mein.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
