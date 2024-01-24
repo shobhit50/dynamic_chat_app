@@ -2,7 +2,40 @@ const express = require('express');
 const path = require('path');
 const app = express();
 const port = 3000;
+const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
+const session = require('express-session');
+const cokieParser = require('cookie-parser');
+const passport = require('passport');
+
+
+
+
+
+
+main().then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err));
+async function main() {
+    await mongoose.connect('mongodb://127.0.0.1:27017/Dynamic-Chat-App');
+}
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(session({
+    secret: 'Thisismysecret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000,
+        httpOnly: true,
+    }
+}));
+app.use(cokieParser());
+app.use(passport.initialize());
+
+
 const server = app.listen(port, () => {
     console.log(`Server listening on port ${port}`);
 });
