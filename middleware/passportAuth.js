@@ -5,7 +5,7 @@ const passport = require('passport');
 const User = require('../models/user');
 
 
-
+//  we use the cookieExtractor function to extract the JWT from the cookie
 const cookieExtractor = (req) => {
     let token = null;
     if (req && req.cookies) {

@@ -1,7 +1,9 @@
 const passport = require('passport');
 require('../middleware/passportAuth');
 
-// Middleware to check authentication using Passport user is log-in or not
+
+
+// coustom Middleware to check authentication using Passport user is log-in or not
 const checkAuth = (req, res, next) => {
     passport.authenticate('jwt', { session: false }, (err, user, info) => {
         if (err || !user) {

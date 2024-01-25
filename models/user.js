@@ -24,7 +24,4 @@ const userSchema = new Schema({
     },
     socketId: String,
 });
-
-
-// socketId: String,
 module.exports = mongoose.model('User', userSchema);

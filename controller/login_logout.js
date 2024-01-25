@@ -5,10 +5,12 @@ require('../middleware/passportAuth');
 
 
 
-
+// render ragister form
 const userRegisterLoad = (req, res) => {
     res.render('user/userRegister');
 }
+
+// register user in database
 const userRegister = async (req, res) => {
     try {
         const { username, email, Password } = req.body;
@@ -28,9 +30,12 @@ const userRegister = async (req, res) => {
     }
 }
 
+// render login form to user                                            
 const userLoginLoad = (req, res) => {
     res.render('user/userLogin');
 }
+
+// login user and create jwt token
 const userLogin = async (req, res) => {
     try {
         const user = await usermodel.findOne({ username: req.body.username });
@@ -56,6 +61,7 @@ const userLogin = async (req, res) => {
     }
 }
 
+// logout user and clear jwt token
 const logout = (req, res) => {
     res.clearCookie('jwt');
     res.redirect('/userLogin');

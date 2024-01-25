@@ -11,11 +11,11 @@ const checkAuth = require("../middleware/authentication");
 router.get('/', (req, res) => { res.redirect('/community'); }); // root route    
 
 // login and User register routes
-router.get('/userRegister', userRegisterLoad);
-router.post('/userRegister', userRegister);
-router.get('/userLogin', userLoginLoad);
-router.post('/userLogin', userLogin);
-router.get('/Logout', logout);
+router.get('/userRegister', userRegisterLoad);      // render ragister form
+router.post('/userRegister', userRegister);        // register user in database
+router.get('/userLogin', userLoginLoad);          // render login form to user 
+router.post('/userLogin', userLogin);            // login user and create jwt token
+router.get('/Logout', logout);                  // logout user and clear cookie
 
 // ---------------------------------------------------------------------
 // const checkAuth = (req, res, next) => {
