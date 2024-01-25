@@ -71,8 +71,8 @@ io.on('connection', (socket) => {
 
 
 
-    console.log(socket.id);
-    console.log(io.eio.clientsCount);
+    // console.log(socket.id);
+    // console.log(io.eio.clientsCount);
 });
 
 

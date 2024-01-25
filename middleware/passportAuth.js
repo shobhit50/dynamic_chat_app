@@ -22,7 +22,6 @@ opts.secretOrKey = 'thisismysecret';
 
 
 passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
-    console.log('jwt_payload:', done);
     try {
         const user = await User.findOne({ username: jwt_payload.username.toLowerCase() });
 
@@ -31,7 +30,6 @@ passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
         }
         return done(null, user);
     } catch (error) {
-        console.error('Error during user retrieval:', error);
         return done(error, false);
     }
 }));

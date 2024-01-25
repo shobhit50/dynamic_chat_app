@@ -7,7 +7,7 @@ require('../middleware/passportAuth');
 const checkAuth = (req, res, next) => {
     passport.authenticate('jwt', { session: false }, (err, user, info) => {
         if (err || !user) {
-            console.log('Error during authentication:', info.message);
+            // console.log('Error during authentication:', info.message);
             return res.redirect('/userLogin');
         }
         req.user = user;

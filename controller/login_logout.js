@@ -56,7 +56,6 @@ const userLogin = async (req, res) => {
         res.cookie('jwt', token, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 });
         res.redirect('/community');
     } catch (error) {
-        console.error('Error during login:', error);
         res.status(500).send('Login failed');
     }
 }
