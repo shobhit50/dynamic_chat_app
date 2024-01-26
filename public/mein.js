@@ -1,10 +1,17 @@
+// if user allready have a socket connection and open other new tab in same browser then it will not create new socket connection
+// it will close the previus socket connection and create new socket connection
+
 const socket = io();
+
+
+
+
 const messageContainer = document.getElementsByClassName('chat-box');
 const messageForm = document.getElementById('send-container');
 const messageInput = document.getElementById('message-input');
 const messageButton = document.getElementById('submit');
-const name = prompt('What is your name?');
-socket.emit('new-user', name);
+// const name = prompt('What is your name?');
+socket.emit('new-user');
 
 
 const appendMessage = (message, position) => {
@@ -40,3 +47,9 @@ socket.on('user-disconnected', (data) => {
 
 
 
+socket.on('disconnect', () => {
+    socket.close();
+    alert('you are disconnected from server');
+
+
+});

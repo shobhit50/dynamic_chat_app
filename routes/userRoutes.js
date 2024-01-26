@@ -4,7 +4,7 @@ const path = require("path");
 const usermodel = require("../models/user");
 const bcrypt = require('bcrypt');
 const { userRegisterLoad, userRegister, userLoginLoad, userLogin, logout } = require("../controller/login_logout");
-const checkAuth = require("../middleware/authentication");
+const { checkAuth } = require("../middleware/authentication");
 
 
 

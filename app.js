@@ -7,7 +7,9 @@ const userRoutes = require('./routes/userRoutes');
 const session = require('express-session');
 const cokieParser = require('cookie-parser');
 const passport = require('passport');
-
+const jwt = require('jsonwebtoken');
+const { userData } = require('./middleware/authentication');
+const User = require('./models/user');
 
 
 
@@ -51,28 +53,51 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", userRoutes);
 
 
+let connectedUsers = {};
+let newConnections = {};
+io.on('connection', async (socket) => {
+    const currUser = userData(socket);
 
 
 
+    let userId = currUser.id;
 
-io.on('connection', (socket) => {
-    socket.on('new-user', (name) => {
-        socket.username = name;
-        socket.broadcast.emit('user-connected', name);
+    // If a socket connection already exists for the user, disconnect it
+    if (connectedUsers[userId]) {
+        newConnections[userId] = socket.id;
+        io.sockets.sockets.get(connectedUsers[userId]).disconnect();
+    } else {
+        connectedUsers[userId] = socket.id;
+    }
+
+
+
+    await User.findByIdAndUpdate(currUser.id, { status: 'online' });
+    // socket.broadcast.emit('user-connected', currUser.id);
+
+
+    socket.on('new-user', () => {
+        socket.username = currUser.username;
+        socket.broadcast.emit('user-connected', currUser.username);
     });
 
     socket.on('send-chat-message', (message) => {
         socket.broadcast.emit('chat-message', { message: message, name: socket.username });
     });
 
-    socket.on('disconnect', () => {
+    socket.on('disconnect', async () => {
+        await User.findByIdAndUpdate(currUser.id, { status: 'offline' });
         socket.broadcast.emit('user-disconnected', { name: socket.username });
+
+        if (newConnections[userId]) {
+            connectedUsers[userId] = newConnections[userId];
+            delete newConnections[userId];
+        } else {
+            delete connectedUsers[userId];
+        }
     });
-
-
-
     // console.log(socket.id);
-    // console.log(io.eio.clientsCount);
+    console.log(io.eio.clientsCount);
 });
 
 

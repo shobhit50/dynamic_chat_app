@@ -22,6 +22,11 @@ const userSchema = new Schema({
         enum: ['online', 'offline'],
         default: 'offline',
     },
+    chats: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Chat',
+    }],
     socketId: String,
+
 });
 module.exports = mongoose.model('User', userSchema);
