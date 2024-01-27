@@ -10,6 +10,8 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const { userData } = require('./middleware/authentication');
 const User = require('./models/user');
+const Message = require('./models/chat');
+const ejsMate = require('ejs-mate');
 
 
 
@@ -46,23 +48,22 @@ const io = require('socket.io')(server);
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.set("view engine", "ejs");
+app.engine('ejs', ejsMate);
 app.set("views", path.join(__dirname, "views"));
-app.use(express.urlencoded({ extended: true }));
 
 
 app.use("/", userRoutes);
 
 
+// here im creating a object to store the socket id of the user
 let connectedUsers = {};
 let newConnections = {};
 io.on('connection', async (socket) => {
+    // here im retriving the user data from the userData middleware
     const currUser = userData(socket);
-
-
-
     let userId = currUser.id;
 
-    // If a socket connection already exists for the user, disconnect it
+    // here If a socket connection already exists, disconnect it
     if (connectedUsers[userId]) {
         newConnections[userId] = socket.id;
         io.sockets.sockets.get(connectedUsers[userId]).disconnect();
@@ -70,11 +71,8 @@ io.on('connection', async (socket) => {
         connectedUsers[userId] = socket.id;
     }
 
-
-
     await User.findByIdAndUpdate(currUser.id, { status: 'online' });
     // socket.broadcast.emit('user-connected', currUser.id);
-
 
     socket.on('new-user', () => {
         socket.username = currUser.username;
@@ -83,6 +81,16 @@ io.on('connection', async (socket) => {
 
     socket.on('send-chat-message', (message) => {
         socket.broadcast.emit('chat-message', { message: message, name: socket.username });
+    });
+
+    socket.on('private message', async ({ message, receiver }) => {
+        const messageDoc = new Message({ message, sender: userId, receiver });
+        await messageDoc.save();
+        // retrive the receiver socket id from the connectedUsers object
+        const receiverSocketId = connectedUsers[receiver];
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit('private message', { message, sender: currUser.username });
+        }
     });
 
     socket.on('disconnect', async () => {
@@ -97,7 +105,7 @@ io.on('connection', async (socket) => {
         }
     });
     // console.log(socket.id);
-    console.log(io.eio.clientsCount);
+    // console.log(io.eio.clientsCount);
 });
 
 
