@@ -14,6 +14,7 @@ const Message = require('./models/chat');
 const ejsMate = require('ejs-mate');
 
 
+
 main().then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log(err));
 async function main() {

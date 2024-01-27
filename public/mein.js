@@ -69,7 +69,7 @@ if (document.body.id === 'community') {
         appendMessage(`${name} joined the chat`, 'left');
     });
     socket.on('user-disconnected', (data) => {
-        appendMessage(`${data.name}: left the chat `, 'left');
+        // appendMessage(`${data.name}: left the chat `, 'left');
     });
 }
 

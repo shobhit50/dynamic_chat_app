@@ -16,7 +16,9 @@ router.get('/userRegister', userRegisterLoad);      // render ragister form
 router.post('/userRegister', userRegister);        // register user in database
 router.get('/userLogin', userLoginLoad);          // render login form to user 
 router.post('/userLogin', userLogin);            // login user and create jwt token
-router.get('/Logout', logout);                  // logout user and clear cookie
+router.get('/Logout', checkAuth, logout);                  // logout user and clear cookie
+
+
 
 // ---------------------------------------------------------------------
 // const checkAuth = (req, res, next) => {
@@ -33,22 +35,40 @@ router.get('/Logout', logout);                  // logout user and clear cookie
 
 // navigation api routes
 router.get('/community', checkAuth, (req, res) => {
-    const user = 'Community';
-    res.render('index', { user });
+    try {
+        const user = 'Community';
+        res.render('index', { user });
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 router.get('/new-chat', checkAuth, async (req, res) => {
-    const user = req.user.username;
-    const chat = await usermodel.find({ _id: { $ne: req.user.id } });
-    res.render('userList', { user, chat });
+    try {
+        const user = req.user.username;
+        const chat = await usermodel.find({ _id: { $ne: req.user.id } });
+        res.render('userList', { user, chat });
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 router.get('/Chat/:id', checkAuth, async (req, res) => {
-    const user = await usermodel.findOne({ _id: req.params.id });
-    const chats = await message.find({ $or: [{ sender: req.user.id, receiver: req.params.id }, { sender: req.params.id, receiver: req.user.id }] }).sort({ createdAt: 1 }).populate('sender receiver');
-    const current = req.user;
-    res.render('OneToOne.ejs', { user, chats, current });
+    try {
+        const user = await usermodel.findOne({ _id: req.params.id });
+        const chats = await message.find({ $or: [{ sender: req.user.id, receiver: req.params.id }, { sender: req.params.id, receiver: req.user.id }] }).sort({ createdAt: 1 }).populate('sender receiver');
+        const current = req.user;
+        res.render('OneToOne.ejs', { user, chats, current });
+    } catch (err) {
+        console.log(err);
+    }
 });
+
+// 404 page not found
+router.get('*', (req, res) => {
+    res.json({ message: '404 Page Not Found' });
+});
+
 
 
 

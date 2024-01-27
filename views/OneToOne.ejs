@@ -38,9 +38,8 @@
                                 <img style="height: min-content; width: min-content;" src="/assits/menu.png" alt="">
                             </a>
                             <div class="dropdown-container">
-                                <a href="./userLogin">Log in</a>
-                                <a href="#">Dropdown Item 2</a>
-
+                                <a href="/userLogin">create account</a>
+                                <a href="/logout">log out</a>
                             </div>
                         </div>
                     </div>
@@ -61,7 +60,7 @@
                 <div class="input">
                     <form style="display: flex; gap: 0.5rem;" id="send-container2" action="#">
                         <input class="form-control mr-sm-2 " id="messageInput" type="search"
-                            placeholder="Type a message" aria-label="Search" receiverId="<%= user.id %>">
+                            placeholder="Type a message" aria-label="Search" receiverId="<%= user.id %> " required>
                         <button id="submit" style="border: none;background-color: white;" type="submit"><img
                                 src="/assits/send.png" alt=""></button>
                     </form>
