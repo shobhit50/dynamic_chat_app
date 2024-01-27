@@ -1,0 +1,26 @@
+<nav> <span><i class="fa-brands fa-whatsapp"></i>
+        <% if (user) { %>
+            <%= user %>
+                <% } else { %>
+                    chat-box
+                    <% } %>
+    </span>
+    <div class="links">
+        <a href="/community"> <img style=" height: min-content; width: min-content;" src="/assits/community-outline.png"
+                alt="">
+        </a>
+        <a href="new-chat"> <img style=" height: min-content; width: min-content;" src="/assits/new-chat-outline.png"
+                alt="">
+        </a>
+        <div class="dropdown">
+            <a href="#">
+                <img style="height: min-content; width: min-content;" src="/assits/menu.png" alt="">
+            </a>
+            <div class="dropdown-container">
+                <a href="./userLogin">Log in</a>
+                <a href="#">Dropdown Item 2</a>
+
+            </div>
+        </div>
+    </div>
+</nav>

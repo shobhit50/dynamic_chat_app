@@ -3,47 +3,23 @@
     <body id="community">
         <div class="continer">
             <div class="continer-box">
-                <nav> <span><i class="fa-brands fa-whatsapp"></i>
-                        <% if (user) { %>
-                            <%= user %>
-                                <% } else { %>
-                                    chat-box
-                                    <% } %>
-                    </span>
-                    <div class="links">
-                        <a href="/community"> <img style=" height: min-content; width: min-content;"
-                                src="/assits/community-outline.png" alt="">
-                        </a>
-                        <a href="new-chat"> <img style=" height: min-content; width: min-content;"
-                                src="/assits/new-chat-outline.png" alt="">
-                        </a>
-                        <div class="dropdown">
-                            <a href="#">
-                                <img style="height: min-content; width: min-content;" src="/assits/menu.png" alt="">
-                            </a>
-                            <div class="dropdown-container">
-                                <a href="./userLogin">Log in</a>
-                                <a href="#">Dropdown Item 2</a>
 
-                            </div>
+                <%- include("includes/nav.ejs") %>
+                    <div class="chat-box">
+
+                        <div class="message left">
+                            Namaste wellcome sir &#10084;&#65039;
                         </div>
                     </div>
-                </nav>
-                <div class="chat-box">
+                    <div class="input">
+                        <form style="display: flex; gap: 0.5rem;" id="send-container" action="#">
+                            <input class="form-control mr-sm-2" id="message-input" type="search"
+                                placeholder="Type a message" aria-label="Search">
+                            <button id="submit" style="border: none;background-color: white;" type="submit"><img
+                                    src="/assits/send.png" onclick="community()" alt=""></button>
+                        </form>
 
-                    <div class="message left">
-                        Namaste wellcome sir &#10084;&#65039;
                     </div>
-                </div>
-                <div class="input">
-                    <form style="display: flex; gap: 0.5rem;" id="send-container" action="#">
-                        <input class="form-control mr-sm-2" id="message-input" type="search"
-                            placeholder="Type a message" aria-label="Search">
-                        <button id="submit" style="border: none;background-color: white;" type="submit"><img
-                                src="/assits/send.png" onclick="community()" alt=""></button>
-                    </form>
-
-                </div>
             </div>
 
 
