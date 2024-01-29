@@ -19,24 +19,24 @@ const ejsMate = require('ejs-mate');
 
 
 //  here for local data base
-// main().then(() => console.log('Connected to MongoDB'))
-//     .catch(err => console.log(err));
-// async function main() {
-//     await mongoose.connect('mongodb://127.0.0.1:27017/Dynamic-Chat-App');
-// }
-
-// here for mongodb cluster
+main().then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err));
 async function main() {
-    const uri = "mongodb+srv://shobhit:" + dbpass + "@cluster0.snn3wbn.mongodb.net/Chatapp?retryWrites=true&w=majority";
-    await mongoose.connect(uri, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
-
-    console.log('Connected to MongoDB Atlas');
+    await mongoose.connect('mongodb://127.0.0.1:27017/Dynamic-Chat-App');
 }
 
-main().catch((err) => console.log(err));
+// here for mongodb cluster
+// async function main() {
+//     const uri = "mongodb+srv://shobhit:" + dbpass + "@cluster0.snn3wbn.mongodb.net/Chatapp?retryWrites=true&w=majority";
+//     await mongoose.connect(uri, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//     });
+
+//     console.log('Connected to MongoDB Atlas');
+// }
+
+// main().catch((err) => console.log(err));
 
 
 app.use(express.json());
