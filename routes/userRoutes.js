@@ -9,6 +9,7 @@ const message = require("../models/chat");
 
 
 
+
 router.get('/', (req, res) => { res.redirect('/community'); }); // root route    
 
 // login and User register routes

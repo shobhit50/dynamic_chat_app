@@ -1,7 +1,11 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config()
+}
 const express = require('express');
 const app = express();
 const path = require('path');
-const port = 3000;
+const port = process.env.PORT || 3001;
+const dbpass = process.env.DB_PASS || "";
 const mongoose = require('mongoose');
 const userRoutes = require('./routes/userRoutes');
 const session = require('express-session');
@@ -14,12 +18,25 @@ const Message = require('./models/chat');
 const ejsMate = require('ejs-mate');
 
 
+//  here for local data base
+// main().then(() => console.log('Connected to MongoDB'))
+//     .catch(err => console.log(err));
+// async function main() {
+//     await mongoose.connect('mongodb://127.0.0.1:27017/Dynamic-Chat-App');
+// }
 
-main().then(() => console.log('Connected to MongoDB'))
-    .catch(err => console.log(err));
+// here for mongodb cluster
 async function main() {
-    await mongoose.connect('mongodb://127.0.0.1:27017/Dynamic-Chat-App');
+    const uri = "mongodb+srv://shobhit:" + dbpass + "@cluster0.snn3wbn.mongodb.net/Chatapp?retryWrites=true&w=majority";
+    await mongoose.connect(uri, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    });
+
+    console.log('Connected to MongoDB Atlas');
 }
+
+main().catch((err) => console.log(err));
 
 
 app.use(express.json());

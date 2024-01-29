@@ -2,6 +2,7 @@ const usermodel = require("../models/user");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('../middleware/passportAuth');
+const { chatSchema, userSchema } = require("../middleware/zod");
 
 
 
