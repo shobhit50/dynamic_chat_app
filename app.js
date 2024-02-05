@@ -16,6 +16,7 @@ const { userData } = require('./middleware/authentication');
 const User = require('./models/user');
 const Message = require('./models/chat');
 const ejsMate = require('ejs-mate');
+const user = require('./models/user');
 
 
 //  here for local data base
@@ -27,7 +28,7 @@ const ejsMate = require('ejs-mate');
 
 // here for mongodb cluster
 async function main() {
-    const uri = "mongodb+srv://shobhit:" + dbpass + "@cluster0.snn3wbn.mongodb.net/Chatapp?retryWrites=true&w=majority";
+    const uri = "mongodb+srv://shobhit:uXw9CSZfLVwBnEwj@cluster0.snn3wbn.mongodb.net/Chatapp?retryWrites=true&w=majority";
     await mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -77,20 +78,25 @@ io.on('connection', async (socket) => {
     // here im retriving the user data from the userData middleware
     const currUser = userData(socket);
     let userId = currUser.id;
-
-    // here If a socket connection already exists, disconnect it
     if (connectedUsers[userId]) {
+        console.log('connectedUsers[userId]:', connectedUsers[userId]);
+        if (io.sockets.sockets.has(connectedUsers[userId])) {
+            const socketToDisconnect = io.sockets.sockets.get(connectedUsers[userId]);
+            console.log('socketToDisconnect:', socketToDisconnect);
+            socketToDisconnect.disconnect();
+        } else {
+            console.log('No socket with this ID exists:', connectedUsers[userId]);
+        }
         newConnections[userId] = socket.id;
-        io.sockets.sockets.get(connectedUsers[userId]).disconnect();
-    } else {
-        connectedUsers[userId] = socket.id;
     }
+    connectedUsers[userId] = newConnections[userId] || socket.id;
+
 
     await User.findByIdAndUpdate(currUser.id, { status: 'online' });
     // socket.broadcast.emit('user-connected', currUser.id);
 
+    socket.username = currUser.username;
     socket.on('new-user', () => {
-        socket.username = currUser.username;
         socket.broadcast.emit('user-connected', currUser.username);
     });
 
@@ -99,9 +105,9 @@ io.on('connection', async (socket) => {
     });
 
     socket.on('private message', async ({ message, receiver }) => {
+        receiver = receiver.trim();
         const messageDoc = new Message({ message, sender: userId, receiver });
         await messageDoc.save();
-        // retrive the receiver socket id from the connectedUsers object
         const receiverSocketId = connectedUsers[receiver];
         if (receiverSocketId) {
             io.to(receiverSocketId).emit('private message', { message, sender: currUser.username });
