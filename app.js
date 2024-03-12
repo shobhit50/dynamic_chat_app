@@ -46,7 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
     store: MongoStore.create({
-        mongoUrl: mongoose.connection,
+        mongoUrl: "mongodb+srv://shobhit:" + dbpass + "@cluster0.snn3wbn.mongodb.net/Chatapp?retryWrites=true&w=majority"
     }),
     secret: 'Thisismysecret',
     resave: false,
