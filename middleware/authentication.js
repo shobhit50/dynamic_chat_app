@@ -20,7 +20,9 @@ const checkAuth = (req, res, next) => {
 
 // this function is used to extract user data from jwt token
 const userData = (socket) => {
-    const token = socket.handshake.headers.cookie.split('=')[1];
+    const cookies = socket.handshake.headers.cookie.split(';');
+    const jwtCookie = cookies.find(cookie => cookie.trim().startsWith('jwt'));
+    const token = jwtCookie.split('=')[1];
     const user = jwt.decode(token);
     return user;
 };

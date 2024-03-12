@@ -79,10 +79,8 @@ io.on('connection', async (socket) => {
     const currUser = userData(socket);
     let userId = currUser.id;
     if (connectedUsers[userId]) {
-        console.log('connectedUsers[userId]:', connectedUsers[userId]);
         if (io.sockets.sockets.has(connectedUsers[userId])) {
             const socketToDisconnect = io.sockets.sockets.get(connectedUsers[userId]);
-            console.log('socketToDisconnect:', socketToDisconnect);
             socketToDisconnect.disconnect();
         } else {
             console.log('No socket with this ID exists:', connectedUsers[userId]);
