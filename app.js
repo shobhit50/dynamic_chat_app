@@ -46,7 +46,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
     store: MongoStore.create({
-        mongoUrl: "mongodb+srv://shobhit:" + dbpass + "@cluster0.snn3wbn.mongodb.net/airBnb?retryWrites=true&w=majority"
+        mongoUrl: mongoose.connection,
     }),
     secret: 'Thisismysecret',
     resave: false,
