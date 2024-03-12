@@ -17,6 +17,7 @@ const User = require('./models/user');
 const Message = require('./models/chat');
 const ejsMate = require('ejs-mate');
 const user = require('./models/user');
+const MongoStore = require('connect-mongo');
 
 
 //  here for local data base
@@ -28,7 +29,7 @@ const user = require('./models/user');
 
 // here for mongodb cluster
 async function main() {
-    const uri = "mongodb+srv://shobhit:uXw9CSZfLVwBnEwj@cluster0.snn3wbn.mongodb.net/Chatapp?retryWrites=true&w=majority";
+    const uri = "mongodb+srv://shobhit:" + dbpass + "@cluster0.snn3wbn.mongodb.net/Chatapp?retryWrites=true&w=majority";
     await mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -44,6 +45,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(session({
+    store: MongoStore.create({
+        mongoUrl: "mongodb+srv://shobhit:" + dbpass + "@cluster0.snn3wbn.mongodb.net/airBnb?retryWrites=true&w=majority"
+    }),
     secret: 'Thisismysecret',
     resave: false,
     saveUninitialized: false,
